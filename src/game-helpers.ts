@@ -3,20 +3,20 @@
  * solving algorithm!
  */
 
-interface ResultItem  {
-  letter: string;
-  status: 'correct' | 'incorrect' | 'misplaced';
+interface ResultItem {
+  letter: string
+  status: 'correct' | 'incorrect' | 'misplaced'
 }
 
-export function checkGuess(guess: string, answer:string) {
+export function checkGuess(guess: string, answer: string) {
   // This constant is a placeholder that indicates we've successfully
   // dealt with this character (it's correct, or misplaced).
-  const SOLVED_CHAR = '✓';
+  const SOLVED_CHAR = '✓'
 
-  const guessChars = guess.toUpperCase().split('');
-  const answerChars = answer.split('');
+  const guessChars = guess.toUpperCase().split('')
+  const answerChars = answer.split('')
 
-  let result: Array<ResultItem> = [];
+  const result: Array<ResultItem> = []
 
   // Step 1: Look for correct letters.
   for (let i = 0; i < guessChars.length; i++) {
@@ -24,9 +24,9 @@ export function checkGuess(guess: string, answer:string) {
       result[i] = {
         letter: guessChars[i],
         status: 'correct',
-      };
-      answerChars[i] = SOLVED_CHAR;
-      guessChars[i] = SOLVED_CHAR;
+      }
+      answerChars[i] = SOLVED_CHAR
+      guessChars[i] = SOLVED_CHAR
     }
   }
 
@@ -34,24 +34,22 @@ export function checkGuess(guess: string, answer:string) {
   // it must be incorrect.
   for (let i = 0; i < guessChars.length; i++) {
     if (guessChars[i] === SOLVED_CHAR) {
-      continue;
+      continue
     }
 
-    const misplacedIndex = answerChars.findIndex(
-      (char) => char === guessChars[i]
-    );
+    const misplacedIndex = answerChars.findIndex(char => char === guessChars[i])
 
     const letter = guessChars[i]
 
-    const hasMisplacedIndex =  misplacedIndex >= 0
-    const status = hasMisplacedIndex ? 'misplaced' : 'incorrect';
+    const hasMisplacedIndex = misplacedIndex >= 0
+    const status = hasMisplacedIndex ? 'misplaced' : 'incorrect'
 
     if (hasMisplacedIndex) {
-      answerChars[misplacedIndex] = SOLVED_CHAR;
+      answerChars[misplacedIndex] = SOLVED_CHAR
     }
 
-    result[i] = { letter, status };
+    result[i] = { letter, status }
   }
 
-  return result;
+  return result
 }
