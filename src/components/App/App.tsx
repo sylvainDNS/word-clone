@@ -1,3 +1,4 @@
+import * as React from 'react'
 import Game from '../Game';
 import Header from '../Header';
 
