@@ -10,13 +10,13 @@ interface GuessProps {
 const cells = range(NUM_OF_CHARS_ALLOWED)
 
 const Guess: React.FunctionComponent<GuessProps> = ({ guess }) => {
-  const chars = guess ? guess.value.split('') : []
+  const result = guess?.result || []
 
   return (
     <p className="guess">
       {cells.map(index => (
-        <span key={index} className="cell">
-          {chars[index]}
+        <span key={index} className={`cell ${result[index]?.status ?? ''}`}>
+          {result[index]?.letter}
         </span>
       ))}
     </p>

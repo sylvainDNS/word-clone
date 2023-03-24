@@ -3,10 +3,7 @@
  * solving algorithm!
  */
 
-interface ResultItem {
-  letter: string
-  status: 'correct' | 'incorrect' | 'misplaced'
-}
+import type { ResultItem } from './types'
 
 export function checkGuess(guess: string, answer: string) {
   // This constant is a placeholder that indicates we've successfully
