@@ -3,9 +3,13 @@ import { NUM_OF_CHARS_ALLOWED } from '../../constants'
 
 interface GuessInputProps {
   onSubmit: (guess: string) => void
+  disabled?: boolean
 }
 
-const GuessInput: React.FunctionComponent<GuessInputProps> = ({ onSubmit }) => {
+const GuessInput: React.FunctionComponent<GuessInputProps> = ({
+  onSubmit,
+  disabled,
+}) => {
   const [guess, setGuess] = React.useState<string>('')
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
@@ -37,6 +41,7 @@ const GuessInput: React.FunctionComponent<GuessInputProps> = ({ onSubmit }) => {
         maxLength={NUM_OF_CHARS_ALLOWED}
         pattern={`[a-zA-Z]{${NUM_OF_CHARS_ALLOWED}}`}
         title={`${NUM_OF_CHARS_ALLOWED} letters`}
+        disabled={disabled}
       />
     </form>
   )
