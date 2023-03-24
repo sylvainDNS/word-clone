@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { NUM_OF_CHARS_ALLOWED } from '../../constants'
 
 interface GuessInputProps {
   onSubmit: (guess: string) => void
@@ -33,9 +34,9 @@ const GuessInput: React.FunctionComponent<GuessInputProps> = ({ onSubmit }) => {
         type="text"
         value={guess}
         onChange={handleChange}
-        maxLength={5}
-        pattern="[a-zA-Z]{5}"
-        title="5 letters"
+        maxLength={NUM_OF_CHARS_ALLOWED}
+        pattern={`[a-zA-Z]{${NUM_OF_CHARS_ALLOWED}}`}
+        title={`${NUM_OF_CHARS_ALLOWED} letters`}
       />
     </form>
   )

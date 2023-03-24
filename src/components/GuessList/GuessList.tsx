@@ -1,16 +1,19 @@
-import type { Guess } from '../../types'
+import type { Guess as TGuess } from '../../types'
+import { range } from '../../utils'
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants'
+import Guess from '../Guess'
 
 interface GuessListProps {
-  guesses: Array<Guess>
+  guesses: Array<TGuess>
 }
+
+const rows = range(NUM_OF_GUESSES_ALLOWED)
 
 const GuessList: React.FunctionComponent<GuessListProps> = ({ guesses }) => {
   return (
     <div className="guess-results">
-      {guesses.map(guess => (
-        <p key={guess.id} className="guess">
-          {guess.value}
-        </p>
+      {rows.map(index => (
+        <Guess key={index} guess={guesses[index]} />
       ))}
     </div>
   )
