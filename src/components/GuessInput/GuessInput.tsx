@@ -1,6 +1,10 @@
 import * as React from 'react'
 
-const GuessInput: React.FunctionComponent = () => {
+interface GuessInputProps {
+  onSubmit: (guess: string) => void
+}
+
+const GuessInput: React.FunctionComponent<GuessInputProps> = ({ onSubmit }) => {
   const [guess, setGuess] = React.useState<string>('')
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
@@ -11,6 +15,8 @@ const GuessInput: React.FunctionComponent = () => {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault()
+
+    onSubmit(guess)
 
     setGuess(() => '')
   }
